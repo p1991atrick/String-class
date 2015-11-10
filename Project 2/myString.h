@@ -11,7 +11,7 @@
 
 /* -----------------------------------------------------------------------------
  
- FILE:              myString.HPP
+ FILE:              myString.h
  
  DESCRIPTION:       Custom string class
  
@@ -23,7 +23,7 @@
  
  Author                  Date               Version
  ---------------         ----------         --------------
- Programmer Name         YYYY-MM-DD         Version Number
+ Patrick Kelly           2015-10-15         X.X (can't change)
  
  ----------------------------------------------------------------------------- */
 #include <iostream>
@@ -35,7 +35,7 @@ class myString
 private:
     char * data;
     int    bfrsz;
-
+    
 public:
     // Construction and destruction
     myString   ();
