@@ -6,17 +6,28 @@
 //  Copyright © 2015 Patrick Kelly. All rights reserved.
 //
 
-#include "myString.hpp"
+#include "myString.h"
 #include <iostream>
 #include "My_Macros.h"
+#include <cstring>
 
 using namespace std;
+
+myString::myString()
+{
+    //default data null
+    data = new char[1];
+    data[0]=0;
+    //buffer to 0
+    bfrsz = 1;
+}
 
 
 myString::myString(const char* s)
 {
-    bfrsz = (strlen(s));
-    bfrsz += 1;
-    data = new char;
+    bfrsz = (int)std::strlen(s);
+    data = new char[bfrsz + 1];
+    data[bfrsz] = 0;
     
+    strncpy(data, s, bfrsz);
 }

@@ -7,7 +7,7 @@
 //
 
 #include <iostream>
-#include "myString.cpp"
+#include "myString.h"
 #include "My_Macros.h"
 using namespace std;
 

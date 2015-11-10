@@ -28,7 +28,7 @@
 		F8A85D141BCDF12800DDA182 /* Project 2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Project 2"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8A85D171BCDF12800DDA182 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F8A85D1E1BCDF14A00DDA182 /* myString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = myString.cpp; sourceTree = "<group>"; };
-		F8A85D1F1BCDF14A00DDA182 /* myString.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = myString.hpp; sourceTree = "<group>"; };
+		F8A85D1F1BCDF14A00DDA182 /* myString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myString.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +64,7 @@
 				F83DC9901BD031260057B8B9 /* My_Macros.h */,
 				F8A85D171BCDF12800DDA182 /* main.cpp */,
 				F8A85D1E1BCDF14A00DDA182 /* myString.cpp */,
-				F8A85D1F1BCDF14A00DDA182 /* myString.hpp */,
+				F8A85D1F1BCDF14A00DDA182 /* myString.h */,
 			);
 			path = "Project 2";
 			sourceTree = "<group>";
