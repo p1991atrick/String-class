@@ -6,8 +6,8 @@
 //  Copyright © 2015 Patrick Kelly. All rights reserved.
 //
 
-#ifndef myString_hpp
-#define myString_hpp
+#ifndef myString_h
+#define myString_h
 
 /* -----------------------------------------------------------------------------
  
@@ -73,4 +73,4 @@ public:
     
 };
 
-#endif // __MYSTRING_HPP__
+#endif // __MYSTRING_H__
