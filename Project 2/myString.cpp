@@ -234,14 +234,14 @@ myString& myString::operator+= (const char* s)
     char *tempstring = new char(bfrsz +1);
     tempstring[bfrsz]='\0';
     //move data to tempchar
-    strncpy(tempstring, data, bfrsz+1);
+    strncpy(tempstring, data, bfrsz);
     //empty data
     delete[] data;
     //reinitialize data
     data = new char(bfrsz + strlen(s) + 1);
     data[bfrsz + strlen(s)] = '\0';
     //copy tempchar into data
-    strncpy(data, tempstring, bfrsz + 1);
+    strncpy(data, tempstring, bfrsz);
     delete[] tempstring;
     //add c onto data and recalculate bfrsz
     strcat(data, s);
@@ -262,13 +262,13 @@ myString& myString::operator+= (const myString& str)
     char *tempstring = new char(bfrsz +1);
     tempstring[bfrsz]='\0';
     //move data to tempchar
-    strncpy(tempstring, data, bfrsz+1);
+    strncpy(tempstring, data, bfrsz);
     //reinitialize data
     data = new char(bfrsz + strlen(str.data) + 1);
     data[bfrsz + strlen(str.data)] = '\0';
     //copy tempchar into data
-    strncpy(data, tempstring, bfrsz + 1);
-    //add c onto data and recalculate bfrsz
+    strncpy(data, tempstring, bfrsz);
+    //add str onto data and recalculate bfrsz
     strcat(data, str.data);
     bfrsz = int(bfrsz + strlen(str.data));
     //current string
@@ -387,13 +387,14 @@ void myString::resize (size_t n, char c)
     strncpy(tempstring, data, bfrsz);
     //resize data and fill with tempstring or c
     data = new char[n+1];
+    data[n]= c;
     for(int i=0; i<n; i++)
     {
-        if(i<=bfrsz)
+        if(i<bfrsz)
         {
             data[i]=tempstring[i];
         }
-        else if(i>bfrsz && i<n)
+        else if (i>=bfrsz)
         {
             data[i] = c;
         }
@@ -426,6 +427,7 @@ myString myString::substr (size_t pos, size_t len) const
     //setup variables
     int count = 0;
     myString string;
+    string = '\0';
     //if position is out of range stop with error
     if(pos>bfrsz)
     {
