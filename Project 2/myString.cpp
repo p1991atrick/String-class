@@ -388,10 +388,16 @@ void myString::resize (size_t n, char c)
     strncpy(tempstring, data, bfrsz);
     //resize data and fill with 0 or c
     data = new char[n+1];
-    strncpy(data, tempstring, bfrsz);
-    for(int i=bfrsz+1; i<n; i++)
+    for(int i=0; i<n; i++)
     {
-        data[i] = c;
+        if(i<=bfrsz)
+        {
+            data[i]=tempstring[i];
+        }
+        else if(i>bfrsz && i<n)
+        {
+            data[i] = c;
+        }
     }
     //move tempstring back to data with n length
     bfrsz=int(n);
