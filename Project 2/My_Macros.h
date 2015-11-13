@@ -10,7 +10,7 @@
 #define SHOW_DEBUG_OUTPUT 1
 
 //trace output
-#define SHOW_TRACE 1
+#define SHOW_TRACE 0
 
 //array size calculation    total bytes/bytes of 0 location
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(a[0]))
