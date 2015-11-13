@@ -74,7 +74,7 @@ myString::myString(const myString& str)
     bfrsz = *new int; strlen(str.data);
     //initialize data cstring to 
     data = new char[bfrsz +1];
-    data[bfrsz]=0;
+    data[bfrsz]='\0';
     //copy to data cstring
     strncpy(data, str.data, bfrsz);
 }
@@ -89,7 +89,7 @@ myString::~myString()
 {
     //destructor
 #if SHOW_TRACE
-    cout << "in destructor\n";
+    cout << ".....in destructor.....\n";
 #endif
     //removes char's stored in data
     delete[] data;
@@ -104,18 +104,16 @@ myString::~myString()
 myString& myString::append(const char *s)
 {
 #if SHOW_TRACE
-    cout << "in append\n";
+    cout << ".....in append.....\n";
 #endif
     //create temp pointer for original string
     char *tempstring = new char(bfrsz+1);
-    tempstring[bfrsz] = 0;
+    tempstring[bfrsz] = '\0';
     //copy data into tempsting
     strncpy(tempstring, data, bfrsz+1);
-    //empty data
-    delete[] data;
     //reset data size to *s + data
     data = new char(bfrsz + strlen(s) + 1);
-    data[bfrsz] = 0;
+    data[bfrsz] = '\0';
     //load tempstring back into data
     strncpy(data, tempstring, bfrsz+1);
     delete[] tempstring;
@@ -195,7 +193,7 @@ bool myString::empty() const
  ----------------------------------------------------------------------------- */
 size_t myString::length() const
 {
-    return strlen(data);
+    return bfrsz;
 }
 
 /* -----------------------------------------------------------------------------
@@ -208,20 +206,18 @@ myString& myString::operator+= (char c)
 {
     //create temp char
     char *tempchar = new char(bfrsz +1);
-    tempchar[bfrsz]=0;
+    tempchar[bfrsz]='\0';
     //move data to tempchar
     strncpy(tempchar, data, bfrsz+1);
-    //empty data
-    delete[] data;
     //reinitialize data
-    data = new char(bfrsz + 2);
-    data[bfrsz] = 0;
+    bfrsz = bfrsz+1;
+    data = new char(bfrsz + 1);
+    data[bfrsz] = '\0';
     //copy tempchar into data
     strncpy(data, tempchar, bfrsz+1);
     delete[] tempchar;
     //add c onto data and recalculate bfrsz
     strcat(data, &c);
-    bfrsz = bfrsz+1;
     //current string
     return *this;
 }
@@ -236,14 +232,14 @@ myString& myString::operator+= (const char* s)
 {
     //create temp char
     char *tempstring = new char(bfrsz +1);
-    tempstring[bfrsz]=0;
+    tempstring[bfrsz]='\0';
     //move data to tempchar
     strncpy(tempstring, data, bfrsz+1);
     //empty data
     delete[] data;
     //reinitialize data
     data = new char(bfrsz + strlen(s) + 1);
-    data[bfrsz + strlen(s)] = 0;
+    data[bfrsz + strlen(s)] = '\0';
     //copy tempchar into data
     strncpy(data, tempstring, bfrsz + 1);
     delete[] tempstring;
@@ -264,14 +260,14 @@ myString& myString::operator+= (const myString& str)
 {
     //create temp char
     char *tempstring = new char(bfrsz +1);
-    tempstring[bfrsz]=0;
+    tempstring[bfrsz]='\0';
     //move data to tempchar
     strncpy(tempstring, data, bfrsz+1);
     //empty data
     delete[] data;
     //reinitialize data
     data = new char(bfrsz + strlen(str.data) + 1);
-    data[bfrsz + strlen(str.data)] = 0;
+    data[bfrsz + strlen(str.data)] = '\0';
     //copy tempchar into data
     strncpy(data, tempstring, bfrsz + 1);
     delete[] tempstring;
@@ -293,7 +289,7 @@ myString& myString::operator=(char c)
     //clear data and rest bfrsz;
     bfrsz = 1;
     data = new char[bfrsz+1];
-    data[bfrsz] = 0;
+    data[bfrsz] = '\0';
     //replace data[0] with c
     data[0] = c;
     return *this;
@@ -310,7 +306,7 @@ myString& myString::operator=(const char* s)
     //clear data and rest bfrsz
     bfrsz = int(strlen(s));
     data = new char[bfrsz+1];
-    data[bfrsz] = 0;
+    data[bfrsz] = '\0';
     //load S into data
     strncpy(data, s, bfrsz);
     return *this;
@@ -327,7 +323,7 @@ myString& myString::operator=  (const myString& str)
     //clear data and rest bfrsz
     bfrsz = int(strlen(str.data));
     data = new char[bfrsz+1];
-    data[bfrsz] = 0;
+    data[bfrsz] = '\0';
     //load S into data
     strncpy(data, str.data, bfrsz+1);
     return *this;
@@ -341,18 +337,17 @@ myString& myString::operator=  (const myString& str)
  ----------------------------------------------------------------------------- */
 void myString::reserve(size_t n)
 {
-    if (bfrsz < n)
+    if (bfrsz > n)
     {
         //create tempstring to hold data
         char *tempstring = new char[bfrsz+1];
-        tempstring[bfrsz]=0;
+        tempstring[bfrsz]='\0';
         strncpy(tempstring, data, bfrsz);
         //recreate data with size n
-        myString::~myString();
         data = new char[n+1];
-        data[n] = 0;
+        data[n] = '\0';
         //move tempstring back into data and reset bfrsz
-        strncpy(data, tempstring, bfrsz+1);
+        strncpy(data, tempstring, n);
         bfrsz=int(n);
         delete[] tempstring;
     }
@@ -368,12 +363,11 @@ void myString::resize (size_t n)
 {
     //create tempstring to hold data
     char *tempstring = new char[bfrsz+1];
-    tempstring[bfrsz]=0;
+    tempstring[bfrsz]='\0';
     strncpy(tempstring, data, bfrsz);
     //recreate data with size n
-    myString::~myString();
     data = new char[n+1];
-    data[n] = 0;
+    data[n] = '\0';
     //move tempstring back to data with n length
     strncpy(data, tempstring, n);
     bfrsz=int(n);
@@ -390,22 +384,16 @@ void myString::resize (size_t n, char c)
 {
     //create temp string
     char *tempstring = new char[bfrsz+1];
-    tempstring[bfrsz]=0;
+    tempstring[bfrsz]='\0';
     strncpy(tempstring, data, bfrsz);
     //resize data and fill with 0 or c
-    myString::~myString();
     data = new char[n+1];
-    if(n>bfrsz)
+    strncpy(data, tempstring, bfrsz);
+    for(int i=bfrsz+1; i<n; i++)
     {
-        for (int i=bfrsz; i < n; i++)
-            data[i]=c;
-    }
-    else{
-        for (int i = bfrsz; i<n; i++)
-            data[i] = 0;
+        data[i] = c;
     }
     //move tempstring back to data with n length
-    strncpy(data, tempstring, n);
     bfrsz=int(n);
     delete[] tempstring;
 }
@@ -465,7 +453,7 @@ void myString::swap (myString& str)
 {
     //temp string holder
     char *tempstr = new char[bfrsz+1];
-    tempstr[bfrsz]=0;
+    tempstr[bfrsz]='\0';
     int lenstr = 0;
     //move data to tempstr
     strncpy(tempstr, data, bfrsz);
@@ -476,7 +464,7 @@ void myString::swap (myString& str)
     //copy temstr to str
     myString::~myString();
     data = new char[lenstr+1];
-    data[lenstr]= 0;
+    data[lenstr]= '\0';
     strncpy(str.data, tempstr, lenstr);
 }
 
