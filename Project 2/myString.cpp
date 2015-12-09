@@ -108,12 +108,12 @@ myString& myString::append(const char *s)
 #endif
     //create temp pointer for original string
     char *tempstring = new char(bfrsz+1);
-    tempstring[bfrsz] = '\0';
+    tempstring[bfrsz+1] = '\0';
     //copy data into tempsting
     strncpy(tempstring, data, bfrsz+1);
     //reset data size to *s + data
     data = new char(bfrsz + strlen(s) + 1);
-    data[bfrsz] = '\0';
+    data[bfrsz+1] = '\0';
     //load tempstring back into data
     strncpy(data, tempstring, bfrsz+1);
     delete[] tempstring;
@@ -206,7 +206,7 @@ myString& myString::operator+= (char c)
 {
     //create temp char
     char *tempchar = new char(bfrsz +1);
-    tempchar[bfrsz]='\0';
+    tempchar[bfrsz+1]='\0';
     //move data to tempchar
     strncpy(tempchar, data, bfrsz+1);
     //reinitialize data
@@ -232,14 +232,14 @@ myString& myString::operator+= (const char* s)
 {
     //create temp char
     char *tempstring = new char(bfrsz +1);
-    tempstring[bfrsz]='\0';
+    tempstring[bfrsz+1]='\0';
     //move data to tempchar
     strncpy(tempstring, data, bfrsz);
     //empty data
     delete[] data;
     //reinitialize data
     data = new char(bfrsz + strlen(s) + 1);
-    data[bfrsz + strlen(s)] = '\0';
+    data[bfrsz+1 + strlen(s)] = '\0';
     //copy tempchar into data
     strncpy(data, tempstring, bfrsz);
     delete[] tempstring;
@@ -362,7 +362,7 @@ void myString::resize (size_t n)
 {
     //create tempstring to hold data
     char *tempstring = new char[bfrsz+1];
-    tempstring[bfrsz]='\0';
+    tempstring[bfrsz+1]='\0';
     strncpy(tempstring, data, bfrsz);
     //recreate data with size n
     data = new char[n+1];
@@ -383,7 +383,7 @@ void myString::resize (size_t n, char c)
 {
     //create temp string
     char *tempstring = new char[bfrsz+1];
-    tempstring[bfrsz]='\0';
+    tempstring[bfrsz+1]='\0';
     strncpy(tempstring, data, bfrsz);
     //resize data and fill with tempstring or c
     data = new char[n+1];

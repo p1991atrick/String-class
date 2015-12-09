@@ -52,8 +52,8 @@ int main()
     cout << "Compair Data: " << helloxcode.compare(string) << endl;//should NOT be 0
     
     myString emptytest;
-    cout << "Is string Empty: " << helloworld.empty() << endl;
-    cout << "Is string Empty: " << emptytest.empty() << endl << endl;
+    cout << "Is string Empty: " << helloworld.empty() << endl; //should be 0
+    cout << "Is string Empty: " << emptytest.empty() << endl << endl;  //should be 1
     
 //reset all string varables
     helloxcode = "Hello Xcode";
@@ -71,7 +71,7 @@ int main()
     string+= " and ";
     cout << "Appended string is: " << string << endl;
     
-    string+= helloworld;
+    string+= helloxcode;
     cout << "Appended string is: " << string << endl << endl;
     
     string.reserve(13);
